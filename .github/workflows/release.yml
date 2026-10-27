@@ -1,0 +1,66 @@
+name: Publish portable release
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release.yml']
+permissions:
+  contents: write
+concurrency:
+  group: portable-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '8.0.x'
+      - name: Check behavior and publish
+        run: ./build.ps1 -Publish
+      - name: Package portable app
+        run: |
+          $ErrorActionPreference = 'Stop'
+          [xml]$project = Get-Content src/Bugger.App/Bugger.App.csproj
+          $version = [string]$project.Project.PropertyGroup.Version
+          $tag = "v$version"
+          "RELEASE_TAG=$tag" >> $env:GITHUB_ENV
+          New-Item -ItemType Directory -Path release-package, release-assets | Out-Null
+          Copy-Item outputs/Bugger/Bugger.exe, README.md, LICENSE -Destination release-package
+          Copy-Item outputs/Bugger/Bugger.exe -Destination release-assets
+          Compress-Archive -Path release-package/* -DestinationPath "release-assets/Bugger-$tag-win-x64.zip"
+          Get-ChildItem release-assets -File | ForEach-Object {
+            $hash = Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256
+            "$($hash.Hash.ToLowerInvariant())  $($_.Name)"
+          } | Set-Content release-assets/SHA256SUMS.txt
+          @"
+          Portable Windows x64 reminder app. The .NET runtime is included.
+
+          Download Bugger.exe for the standalone app, or Bugger-$tag-win-x64.zip for the app, instructions, and license. Keep it in a writable folder and run Bugger.exe. No installation is required.
+
+          Weekly and one-time reminders, snooze, daily rollover, collapsible task groups, blue beetle tray status, and command line support. Tasks and progress are stored locally in tasks.csv.
+
+          To update an existing copy, exit Bugger and replace only Bugger.exe. Keep tasks.csv and settings.txt.
+
+          This executable is unsigned, so Windows may show a SmartScreen warning. SHA256SUMS.txt provides download checksums.
+
+          Behavior checks run before packaging. Native UI checks were completed locally during development.
+          "@ | Set-Content release-notes.md
+      - name: Publish release with assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          gh release view $env:RELEASE_TAG --repo $env:GITHUB_REPOSITORY *> $null
+          if ($LASTEXITCODE -eq 0) { throw 'Release already exists. Existing assets are never overwritten.' }
+          gh release create $env:RELEASE_TAG --repo $env:GITHUB_REPOSITORY --target $env:GITHUB_SHA --title "Bugger $env:RELEASE_TAG" --notes-file release-notes.md --draft
+          if ($LASTEXITCODE -ne 0) { throw 'Creating draft release failed.' }
+          gh release upload $env:RELEASE_TAG release-assets/Bugger.exe release-assets/*.zip release-assets/SHA256SUMS.txt --repo $env:GITHUB_REPOSITORY
+          if ($LASTEXITCODE -ne 0) { throw 'Uploading release assets failed. Release remains draft.' }
+          gh release edit $env:RELEASE_TAG --repo $env:GITHUB_REPOSITORY --draft=false --latest
+          if ($LASTEXITCODE -ne 0) { throw 'Publishing release failed.' }
