@@ -2,6 +2,8 @@
 
 ## GitHub publication
 
+The user requested a shorter, visual GitHub front page. README.md now leads with the approved blue beetle logo, an actual native main-window screenshot with sample tasks, and a reminder popup screenshot. These images are copied into docs/images/ for durable repository links. The full prior instructions are retained in docs/USER_GUIDE.md. No application behavior or layout changes are involved.
+
 The user also requested a release with the compiled executable. `.github/workflows/release.yml` builds on a Windows runner with .NET 8, runs behavior checks, and publishes a self-contained Windows x64 executable, a ZIP containing only the executable/README/LICENSE, and SHA-256 checksums. It creates a draft, uploads all assets, then publishes. Existing releases are never overwritten. It runs manually or when its workflow file changes on main. Release version comes from the application project. Personal CSV/settings and logs are never packaged. Native UI checks remain the locally recorded development checks.
 
 The user created the public GitHub repository https://github.com/Mofman1/Bugger with a LICENSE file. Publish source, design references, tests, and documentation on main, preserving that license. Generated outputs, work logs, task CSV files, settings, editor state, and environment files are excluded. The local origin points to this repository. Version 0.3.0 is the initial source publication; application behavior is unchanged.
