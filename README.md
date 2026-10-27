@@ -2,7 +2,9 @@
 
 A small portable Windows reminder app with weekly and one-time tasks, snoozing, rollover, a tray icon, and command line support. Tasks and progress stay in a readable CSV file beside the executable.
 
-Version 0.3.0. Build from source using the Development instructions below. Generated executables and personal task files are excluded from the source repository.
+Version 0.3.0. Download the compiled Windows x64 app from [GitHub Releases](https://github.com/Mofman1/Bugger/releases/latest). Choose `Bugger.exe` for the standalone app or the ZIP for the app, instructions, and license. The .NET runtime is included. The executable is unsigned, so Windows may show a SmartScreen warning. Release assets include SHA-256 checksums.
+
+For updates, exit Bugger and replace only `Bugger.exe`, keeping your `tasks.csv` and `settings.txt`. Build from source using the Development instructions below. Generated executables and personal task files are excluded from the source repository.
 
 Run `outputs/Bugger/Bugger.exe`. The published application includes its Windows runtime. No installation, account, or database is needed. Keep the executable in a writable folder such as a folder under Documents, not Program Files.
 
@@ -65,6 +67,8 @@ Behavior checks: `dotnet run --project tests/Bugger.Checks -c Release`.
 Native UI checks: `dotnet run --project tests/Bugger.UiChecks -c Release -- outputs/screenshots`. This opens a separate test application with its own test data, verifies stacking and timeouts, and captures native rendered forms. It does not touch tasks beside the published executable. Automated UI tests need an unlocked Windows desktop. Test screenshots are for layout verification; manual Computer Use screenshots also verify the actual running app.
 
 The implementation uses native Windows Forms and the .NET standard library. NuGet is used only to obtain official runtime publishing packs; there are no third-party application libraries.
+
+The release workflow runs the behavior checks, publishes the self-contained Windows x64 executable, and packages only the executable, README, and license. It publishes a draft only after every asset uploads successfully. Run it manually from GitHub Actions for a new project version; existing releases are never overwritten. Changes to the release workflow on main also run it.
 
 # Command line support (0.3.0)
 
