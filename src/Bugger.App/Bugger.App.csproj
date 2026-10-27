@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>$(AppDisplayName)</AssemblyName>
+    <Product>$(AppDisplayName)</Product>
+    <Title>$(AppDisplayName)</Title>
+    <Version>0.3.0</Version>
+    <ApplicationIcon>Assets/app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup><ProjectReference Include="../Bugger.Core/Bugger.Core.csproj" /></ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets/app.ico" LogicalName="AppIcon.Normal" />
+    <EmbeddedResource Include="Assets/alert.ico" LogicalName="AppIcon.Alert" />
+  </ItemGroup>
+</Project>

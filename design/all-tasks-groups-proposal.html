@@ -1,0 +1,61 @@
+<div id="bugger-all-groups">
+<style>
+#bugger-all-groups{color-scheme:light;font:13px 'Segoe UI',Tahoma,sans-serif;color:#111}
+#bugger-all-groups *{box-sizing:border-box}
+#bugger-all-groups .study{min-height:388px;padding:16px 8px}
+#bugger-all-groups .app{width:480px;max-width:100%;background:#f0f0f0;color:#111;border:1px solid #888;border-radius:5px;box-shadow:2px 3px 8px #0002;overflow:hidden}
+#bugger-all-groups .title{display:flex;justify-content:space-between;gap:12px;background:#fafafa;padding:5px 8px}
+#bugger-all-groups .title>span:first-child{display:flex;align-items:center;gap:5px}
+#bugger-all-groups .title i,#bugger-all-groups .title svg{width:14px;height:14px}
+#bugger-all-groups .menubar{background:#fff;padding:3px 9px;display:flex;gap:20px;border-bottom:1px solid #ddd}
+#bugger-all-groups button{font:inherit;background:linear-gradient(#fff,#e5e5e5);color:#111!important;-webkit-text-fill-color:#111;border:1px solid #999;border-radius:2px;padding:2px 9px;min-height:24px}
+#bugger-all-groups button:disabled{color:#666!important;-webkit-text-fill-color:#666}
+#bugger-all-groups .menubar button{border:0;padding:0;background:transparent;min-height:20px}
+#bugger-all-groups .body{padding:8px}
+#bugger-all-groups .toolbar{display:flex;gap:5px;margin-bottom:8px}
+#bugger-all-groups .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:10px;min-height:235px}
+#bugger-all-groups .tree{background:#fff;color:#111;border:1px solid #aaa;align-self:stretch;min-width:0}
+#bugger-all-groups .group-heading{display:flex;align-items:center;gap:5px;width:100%;border:0;border-radius:0;background:#eeeeee;padding:5px;min-height:26px;text-align:left}
+#bugger-all-groups .group-heading .expand{border:1px solid #999;background:white;width:12px;height:12px;display:inline-flex;justify-content:center;align-items:center;font:11px Tahoma,sans-serif;flex-shrink:0}
+#bugger-all-groups .group-heading svg{width:15px;height:15px;color:#8a6819}
+#bugger-all-groups .task{display:flex;align-items:center;gap:5px;width:100%;background:#fff;color:#111;border:0;border-radius:0;padding:6px 5px 6px 25px;text-align:left;overflow-wrap:anywhere}
+#bugger-all-groups .task[aria-pressed=true]{background:#d9e9fb}
+#bugger-all-groups .task:hover{background:#e8f0fa}
+#bugger-all-groups .empty{padding:6px 7px 9px 25px;color:#555}
+#bugger-all-groups .detail{display:flex;flex-direction:column;min-width:0}
+#bugger-all-groups .detail p{margin:0 0 9px;overflow-wrap:anywhere;color:#111}
+#bugger-all-groups .detail .sub{color:#555}
+#bugger-all-groups .done{align-self:flex-start;margin-top:auto}
+#bugger-all-groups .status{border-top:1px solid #ccc;color:#444;padding:5px 8px;min-height:26px}
+#bugger-all-groups [hidden]{display:none!important}
+@media(max-width:430px){#bugger-all-groups .split{grid-template-columns:1fr;gap:10px}#bugger-all-groups .study{min-height:620px}#bugger-all-groups .tree{min-height:200px}#bugger-all-groups .detail{min-height:170px}}
+</style>
+<div class="viz-carousel viz-dotted-background" aria-label="All tasks grouped by day">
+<section data-variant="Tasks today"><div class="study" data-example="today"></div></section>
+<section data-variant="Nothing today" hidden><div class="study" data-example="empty"></div></section>
+</div>
+<script>
+(()=>{
+const root=document.getElementById('bugger-all-groups');
+const catalog={
+ plants:{name:'Water plants',schedule:'Saturday · 16:00',reminders:'3 reminders, every 30 min',roll:'Rollover off',next:'Today at 16:00',today:true},
+ bins:{name:'Put bins out',schedule:'Saturday · 18:00',reminders:'5 reminders, every 30 min',roll:'Up to 1 extra day',next:'Today at 18:00 · Important',today:true},
+ dishes:{name:'Dishwasher',schedule:'Mon, Wed, Fri · 12:30',reminders:'4 reminders, every 30 min',roll:'Rollover off',next:'Monday 26 Oct at 12:30',today:false},
+ review:{name:'Weekly review',schedule:'Sunday · 10:00',reminders:'3 reminders, every 20 min',roll:'Rollover off',next:'Tomorrow at 10:00',today:false},
+ desk:{name:'Clean desk',schedule:'Monday · 17:00',reminders:'3 reminders, every 30 min',roll:'Rollover off',next:'Paused · no reminders',today:false,paused:true},
+ dishes2:{name:'Dishwasher',schedule:'Mon, Tue, Wed, Thu, Fri · 12:30',reminders:'5 reminders, every 20 min',roll:'Rollover off',next:'Monday 26 Oct at 12:30',today:false}
+};
+root.querySelectorAll('.study').forEach(stage=>{
+const today=stage.dataset.example==='today'?['plants','bins']:[];
+const other=stage.dataset.example==='today'?['dishes','review','desk']:['dishes','dishes2'];
+let selected=today[0]||other[0]; const completed=new Set();
+function group(label,ids,key){return `<button class="group-heading" data-group="${key}" aria-expanded="true" aria-controls="${stage.dataset.example}-${key}"><span class="expand" aria-hidden="true">-</span><i data-lucide="folder" aria-hidden="true"></i><span>${label} (${ids.length})</span></button><div id="${stage.dataset.example}-${key}" class="children">${ids.length?ids.map(id=>`<button class="task" data-task="${id}" aria-pressed="false">${catalog[id].paused?'Paused: ':id==='bins'?'! ':''}${catalog[id].name}</button>`).join(''):'<div class="empty">Nothing scheduled today</div>'}</div>`;}
+stage.innerHTML=`<div class="app"><div class="title"><span><i data-lucide="app-window" aria-hidden="true"></i>Bugger - All tasks</span><span aria-hidden="true">_ &nbsp; □ &nbsp; ×</span></div><div class="menubar"><button data-menu="tasks">Tasks</button><button data-menu="settings">Settings</button><button data-menu="help">Help</button></div><div class="body"><div class="toolbar"><button data-menu="new">New task...</button><button data-menu="edit">Edit...</button></div><div class="split"><div class="tree">${group('Today',today,'today')}${group('Other days',other,'other')}</div><div class="detail" aria-live="polite"><p class="taskname"></p><p class="schedule"></p><p class="cadence"></p><p class="roll"></p><p class="next"></p><p class="sub"></p><button class="done">Mark done</button></div></div></div><div class="status">${today.length+other.length} tasks saved · ${today.length} scheduled today · Sat 24 Oct</div></div>`;
+function render(){const task=catalog[selected];stage.querySelectorAll('[data-task]').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.task===selected));const item=catalog[b.dataset.task];b.textContent=(completed.has(b.dataset.task)?'Done: ':item.paused?'Paused: ':b.dataset.task==='bins'?'! ':'')+item.name;});stage.querySelector('.taskname').textContent=task.name;stage.querySelector('.schedule').textContent=task.schedule;stage.querySelector('.cadence').textContent=task.reminders;stage.querySelector('.roll').textContent=task.roll;stage.querySelector('.next').textContent=completed.has(selected)?'Done today':'Next: '+task.next;stage.querySelector('.sub').textContent=task.today?'Scheduled today':task.paused?'Reminders are paused':'Not scheduled today';stage.querySelector('.done').disabled=!task.today||completed.has(selected);}
+stage.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.group){const panel=stage.querySelector('#'+b.getAttribute('aria-controls'));panel.hidden=!panel.hidden;b.setAttribute('aria-expanded',String(!panel.hidden));b.querySelector('.expand').textContent=panel.hidden?'+':'-';}else if(b.dataset.task){selected=b.dataset.task;render();}else if(b.classList.contains('done')){completed.add(selected);render();}});
+render();
+if(globalThis.Tweak){const state={indent:25};const tweak=new Tweak({container:stage, onChange:()=>stage.querySelectorAll('.task,.empty').forEach(x=>x.style.paddingLeft=state.indent+'px')});tweak.addSlider(state,'indent',{label:'Folder indentation',min:18,max:32,unit:'px'});}
+});
+})();
+</script>
+</div>

@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+work/
+outputs/
+tasks.csv*
+settings.txt*
+.vs/
+*.user
+*.suo
+**/__pycache__/
+*.pyc
+.env
+.env.*

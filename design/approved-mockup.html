@@ -1,0 +1,121 @@
+<div id="bugger-study">
+<style>
+#bugger-study{font:13px 'Segoe UI',Tahoma,sans-serif;color:#111;color-scheme:light}#bugger-study *{box-sizing:border-box}#bugger-study .stage{min-height:790px;padding:16px 8px;display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:22px;align-items:start}#bugger-study .window{background:#f0f0f0;border:1px solid #888;border-radius:5px;box-shadow:2px 3px 8px #0002;overflow:hidden;margin-bottom:18px}#bugger-study .title{background:#fafafa;padding:7px 9px;display:flex;justify-content:space-between;gap:10px}#bugger-study .menu{background:#fff;padding:3px 9px;display:flex;gap:20px;border-bottom:1px solid #ddd}#bugger-study button,#bugger-study select,#bugger-study input{font:inherit;color:#111}#bugger-study button{background:linear-gradient(#fff,#e5e5e5);border:1px solid #999;border-radius:2px;padding:4px 12px;min-height:26px}#bugger-study button:active{background:#ddd}#bugger-study .menu button{border:0;background:transparent;padding:0;min-height:20px}#bugger-study .content{padding:12px}#bugger-study .tools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}#bugger-study table{width:100%;border-collapse:collapse;background:#fff}#bugger-study th{text-align:left;font-weight:400;background:#eee}#bugger-study td,#bugger-study th{padding:8px 6px;border-bottom:1px solid #ddd}#bugger-study .status{padding:5px 9px;border-top:1px solid #ccc;color:#555}#bugger-study .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}#bugger-study .tasklist{background:white;border:1px solid #aaa}#bugger-study .tasklist button{display:block;width:100%;text-align:left;border:0;border-radius:0;background:white;padding:10px}#bugger-study .detail p{margin:0 0 12px}#bugger-study .launcher{text-align:center;padding:28px 12px}#bugger-study .launcher p{margin:0 0 18px}#bugger-study .editor{margin-top:18px}#bugger-study .form{display:grid;gap:12px}#bugger-study label{display:flex;gap:6px;align-items:center;flex-wrap:wrap}#bugger-study .field{display:grid;gap:4px}#bugger-study input:not([type=checkbox]),#bugger-study select{background:white;border:1px solid #999;padding:4px;min-width:0;max-width:100%}#bugger-study .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}#bugger-study .days{display:flex;gap:8px;flex-wrap:wrap}#bugger-study fieldset{border:1px solid #aaa;padding:10px;min-width:0}#bugger-study .preview{background:#fff;border:1px solid #bbb;padding:8px;color:#444}#bugger-study .foot{display:flex;justify-content:flex-end;gap:8px}#bugger-study .reminder .content p{margin:0 0 10px}#bugger-study .reminder .name{font-weight:600}#bugger-study .reminder small{display:block;color:#555;margin-bottom:12px}#bugger-study .reminder .tools{margin-bottom:0}#bugger-study .critical .title{background:#fff0cd}#bugger-study .caption{color:#555;margin:0 0 8px}#bugger-study .message{min-height:18px;color:#444}#bugger-study .empty{padding:18px}#bugger-study [hidden]{display:none!important}@media(max-width:740px){#bugger-study .stage{grid-template-columns:1fr;min-height:1200px}#bugger-study .split{grid-template-columns:1fr}#bugger-study .pair{grid-template-columns:1fr 1fr}}
+#bugger-study .tight{grid-template-columns:minmax(0,440px) 270px;gap:18px;min-height:790px}
+#bugger-study .tight .content{padding:8px}
+#bugger-study .tight .title{padding:5px 8px}
+#bugger-study .tight .tools{margin-bottom:7px;gap:5px}
+#bugger-study .tight td,#bugger-study .tight th{padding:5px}
+#bugger-study .tight button{padding:2px 9px;min-height:24px}
+#bugger-study .tight .menu button{padding:0;min-height:20px}
+#bugger-study .tight .form{gap:8px}
+#bugger-study .tight .pair{gap:7px 10px}
+#bugger-study .tight .field{gap:2px}
+#bugger-study .tight fieldset{padding:6px 8px}
+#bugger-study .tight .days{gap:5px}
+#bugger-study .tight .days label{gap:2px}
+#bugger-study .tight input:not([type=checkbox]),#bugger-study .tight select{padding:2px 4px}
+#bugger-study .tight .window{margin-bottom:12px}
+#bugger-study .tight .editor{margin-top:12px}
+#bugger-study .tight .preview{padding:5px 7px}
+#bugger-study .tight .message:empty{display:none}
+#bugger-study .tight .reminder .content p{margin-bottom:7px}
+#bugger-study .tight .reminder small{margin-bottom:8px}
+#bugger-study .tight .rollgroup{display:flex;align-items:center;gap:5px 12px;flex-wrap:wrap}
+#bugger-study .tight .rollgroup label{margin-top:0!important}
+@media(max-width:740px){#bugger-study .tight{grid-template-columns:1fr;min-height:1200px}}
+#bugger-study .tasklist,#bugger-study .tasklist button,#bugger-study table,#bugger-study td,#bugger-study th,#bugger-study .detail,#bugger-study .detail p,#bugger-study .name,#bugger-study input,#bugger-study select,#bugger-study option{color:#111!important;-webkit-text-fill-color:#111}
+#bugger-study .tasklist button[aria-pressed="true"]{background:#d9e9fb}
+#bugger-study .tight .split{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:10px}#bugger-study .tight .tasklist button{padding:7px 6px}#bugger-study .tight .detail p{margin-bottom:8px}@media(max-width:430px){#bugger-study .tight .split{grid-template-columns:1fr}}
+</style>
+<div class="viz-carousel viz-dotted-background" aria-label="Bugger layout variations">
+<section data-variant="Tasks menu"><div class="stage tight" data-layout="split"></div></section>
+
+
+</div>
+<script>
+(()=>{
+const root=document.getElementById('bugger-study');
+const title=(text)=>`<div class="title"><span>▧ ${text}</span><span aria-hidden="true">_ &nbsp; □ &nbsp; ×</span></div>`;
+const menu='<div class="menu"><button data-action="tasks">Tasks</button><button data-action="settings">Settings</button><button data-action="help">Help</button></div>';
+const editor=()=>`<div class="window editor">${title('Bugger - Edit task')}<form class="content form"><label class="field">Task name<input value="Unload dishwasher" required></label><div class="pair"><label class="field">Schedule<select class="schedule"><option>Weekly</option><option>One time</option></select></label><label class="field datefield" hidden>Date<input type="date" value="2026-10-26"></label></div><fieldset class="weekdays"><legend>Days</legend><div class="days">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map((d,i)=>`<label><input type="checkbox" ${[0,2,4].includes(i)?'checked':''}>${d}</label>`).join('')}</div></fieldset><div class="pair"><label class="field">First reminder<input class="start" type="time" value="12:00"></label><label class="field">Every (minutes)<input class="cadence" type="number" min="1" value="30"></label><label class="field">Total reminders<input class="count" type="number" min="1" value="5"></label><label><input type="checkbox" class="important">Important</label></div><fieldset class="rollgroup"><legend>Unfinished tasks</legend><label><input class="rollover" type="checkbox" checked>Roll over daily</label><label style="margin-top:8px">Try for <input class="roll-days" type="number" min="1" value="3" style="width:55px"> extra days</label><label style="margin-top:8px"><input class="unlimited" type="checkbox">Unlimited</label></fieldset><div class="preview" aria-live="polite">Last reminder: 2:00 PM, same day</div><div class="foot"><button type="button" data-action="cancel">Cancel</button><button type="submit">Save task</button></div><div class="message" aria-live="polite"></div></form></div>`;
+const popup=(name,critical,time)=>`<div class="window reminder ${critical?'critical':''}">${title(critical?'Bugger - Important':'Bugger')}<div class="content"><p class="name">${critical?'! ':''}${name}</p><small>${time}</small><p>${critical?'Stays open until Done or Snooze':'Closes automatically after 15 seconds'}</p><div class="tools"><button data-action="done">Done</button><button data-action="snooze">Snooze</button><select aria-label="Snooze duration"><option>15 min</option><option>30 min</option><option>1 hour</option></select></div></div></div>`;
+root.querySelectorAll('.stage').forEach(stage=>{
+let main='';
+if(stage.dataset.layout==='list')main=`<div class="content"><div class="tools"><button data-action="new">New task...</button><button data-action="edit">Edit...</button></div><table><thead><tr><th>Task</th><th>Next / status</th><th></th></tr></thead><tbody><tr><td>Unload dishwasher</td><td>12:30 PM</td><td><button data-action="rowdone">Done</button></td></tr><tr><td>! Put bins out</td><td>Due now</td><td><button data-action="rowdone">Done</button></td></tr><tr><td>Water plants</td><td>Done at 9:10 AM</td><td>✓</td></tr></tbody></table></div>`;
+if(stage.dataset.layout==='split')main=`<div class="content"><div class="tools"><button data-action="new">New task...</button><button data-action="edit">Edit...</button></div><div class="split"><div class="tasklist"><button>Unload dishwasher</button><button>! Put bins out</button><button>✓ Water plants</button></div><div class="detail"><p>Unload dishwasher</p><p>Mon, Wed, Fri · 12:00 PM</p><p>5 reminders, every 30 min</p><p>Rollover: up to 3 extra days</p><button data-action="rowdone">Mark done</button></div></div></div>`;
+if(stage.dataset.layout==='minimal')main=`<div class="launcher"><p>2 tasks outstanding today</p><div class="tools" style="justify-content:center"><button data-action="today">Today...</button><button data-action="new">New task...</button></div></div>`;
+stage.innerHTML=`<div><div class="window main">${title('Bugger - '+(stage.dataset.layout==='minimal'?'Task reminders':'Today'))}${menu}${main}<div class="status">Running in tray · tasks.csv</div></div>${editor()}</div><aside><p class="caption">Reminder stack</p>${popup('Put bins out',true,'Reminder 2 of 5 · rolled over 1 day')}${popup('Unload dishwasher',false,'Due 12:00 PM · reminder 1 of 5')}<button data-action="restore">Replay reminders</button><p class="message" aria-live="polite"></p></aside>`;
+const form=stage.querySelector('form');
+function update(){const t=form.querySelector('.start').value.split(':').map(Number);const minutes=t[0]*60+t[1]+(Number(form.querySelector('.count').value)-1)*Number(form.querySelector('.cadence').value);const invalid=minutes>=t[0]*60+t[1]+1440;form.querySelector('.preview').textContent=invalid?'Schedule overlaps the next daily start. Reduce reminders or interval.':`Last reminder: ${String(Math.floor(minutes/60)%24).padStart(2,'0')}:${String(minutes%60).padStart(2,'0')}${minutes>=1440?' next day':', same day'}`;form.querySelector('.weekdays').hidden=form.querySelector('.schedule').value==='One time';form.querySelector('.datefield').hidden=form.querySelector('.schedule').value!=='One time';form.querySelector('.roll-days').disabled=!form.querySelector('.rollover').checked||form.querySelector('.unlimited').checked;return !invalid;}
+form.addEventListener('input',update);form.addEventListener('change',update);
+form.addEventListener('submit',e=>{e.preventDefault();form.querySelector('.message').textContent=update()?'Task saved in this preview.':'Check the reminder schedule.';});
+stage.addEventListener('click',e=>{const b=e.target.closest('button[data-action]');if(!b)return;const a=b.dataset.action;if(a==='done'||a==='snooze'){b.closest('.reminder').hidden=true;stage.querySelector('aside .message').textContent=a==='done'?'Task marked done.':'Task snoozed for '+b.parentElement.querySelector('select').value+'.';}else if(a==='restore'){stage.querySelectorAll('.reminder').forEach(x=>x.hidden=false);stage.querySelector('aside .message').textContent='';}else if(a==='rowdone'){b.closest('tr')?b.closest('tr').querySelectorAll('td')[1].textContent='Done':b.parentElement.querySelector('p').textContent='Task completed';b.disabled=true;}else{form.querySelector('.message').textContent=({new:'New task: change the fields above.',edit:'Editing Unload dishwasher.',cancel:'Changes cancelled in this preview.',today:'Today: dishwasher and bins are outstanding.',tasks:'Tasks: New task, Today, All tasks, Exit Bugger.',settings:'Popup duration: 15 seconds. Maximum visible: 3.',help:'Bugger reminds you until the task is done or its allowance runs out.'})[a]||'';}});
+const taskDetails=[['Unload dishwasher','Mon, Wed, Fri · 12:00 PM','5 reminders, every 30 min','Rollover: up to 3 extra days'],['! Put bins out','Sunday · 6:00 PM','5 reminders, every 30 min','Important · rolled over 1 day'],['Water plants','Saturday · 9:00 AM','3 reminders, every 60 min','Done at 9:10 AM']];
+stage.querySelectorAll('.tasklist button').forEach((b,i)=>{b.setAttribute('aria-pressed',String(i===0));b.addEventListener('click',()=>{stage.querySelectorAll('.tasklist button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));stage.querySelectorAll('.detail p').forEach((p,j)=>p.textContent=taskDetails[i][j]);const doneButton=stage.querySelector('.detail button');doneButton.disabled=i===2;doneButton.textContent=i===2?'Completed':'Mark done';});});
+});
+if(globalThis.Tweak){const settings={spacing:8};const tweak=new Tweak({container:root,onChange:()=>root.querySelectorAll('.content').forEach(e=>e.style.padding=settings.spacing+'px')});tweak.addSlider(settings,'spacing',{label:'Window padding',min:8,max:20,unit:'px'});}
+})();
+</script>
+</div>
+
+
+
+<style>
+#bugger-study .main{position:relative;overflow:visible}
+#bugger-study .dropdown{position:absolute;top:52px;left:2px;z-index:5;width:192px;background:#f7f7f7;border:1px solid #888;box-shadow:2px 3px 5px #0003;padding:3px;color:#111}
+#bugger-study .dropdown button,#bugger-study .tray-options button{display:block;text-align:left;width:100%;border:0;border-radius:0;background:transparent;color:#111!important;-webkit-text-fill-color:#111;padding:4px 18px;min-height:25px}
+#bugger-study .dropdown button:hover,#bugger-study .tray-options button:hover{background:#d9e9fb}
+#bugger-study .dropdown hr,#bugger-study .tray-options hr{border:0;border-top:1px solid #ccc;margin:3px}
+#bugger-study .tray-demo{margin-top:18px;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+#bugger-study .tray-options{background:#f7f7f7;color:#111;border:1px solid #888;padding:3px;width:160px;box-shadow:2px 3px 5px #0003}
+#bugger-study .tray-bar{background:#e8e8e8;border:1px solid #aaa;padding:5px 9px;display:flex;align-items:center;gap:10px}
+#bugger-study .delete-confirm{background:#fff;border:1px solid #999;padding:8px;margin-top:8px;color:#111}
+#bugger-study .delete-confirm p{margin:0 0 8px}
+</style>
+<script>
+(()=>{
+const root=document.getElementById('bugger-study');
+root.querySelectorAll('.stage').forEach(stage=>{
+ const main=stage.querySelector('.main');
+ const tasksButton=main.querySelector('[data-action=tasks]');
+ tasksButton.setAttribute('aria-expanded','true');
+ const dropdown=document.createElement('div');dropdown.className='dropdown';dropdown.setAttribute('aria-label','Tasks');
+ dropdown.innerHTML='<button data-menu="new">New task...</button><button data-menu="edit">Edit task...</button><button data-menu="pause">Pause task</button><button data-menu="duplicate">Duplicate task...</button><button data-menu="delete">Delete task...</button><hr><button data-menu="all">Show all tasks</button><hr><button data-menu="exit">Exit Bugger</button>';
+ main.appendChild(dropdown);
+ const aside=stage.querySelector('aside');
+ aside.insertAdjacentHTML('beforeend','<div class="tray-demo"><div class="tray-options" aria-label="Tray menu"><button data-tray="open">Open Bugger</button><button data-tray="new">New task...</button><hr><button data-tray="exit">Exit Bugger</button></div><div class="tray-bar"><button class="tray-icon" aria-label="Bugger tray icon">▧</button><span>12:05 PM</span></div></div>');
+ const message=stage.querySelector('form .message');
+ let all=false,paused=false;
+ function menuVisible(value){dropdown.hidden=!value;tasksButton.setAttribute('aria-expanded',String(value));}
+ tasksButton.addEventListener('click',e=>{e.stopImmediatePropagation();menuVisible(dropdown.hidden);},true);
+ main.addEventListener('click',e=>{
+ const button=e.target.closest('[data-menu]');if(!button)return;
+ const action=button.dataset.menu;menuVisible(false);
+ const selected=stage.querySelector('.tasklist button[aria-pressed="true"]');
+ const name=selected?selected.textContent.replace(/^Paused: /,''):'Unload dishwasher';
+ if(action==='all'){
+ all=!all;button.textContent=all?'Show Today only':'Show all tasks';main.querySelector('.title span').textContent=all?'▧ Bugger - All tasks':'▧ Bugger - Today';
+ let extra=stage.querySelector('.extra-task');
+ if(all&&!extra){extra=document.createElement('button');extra.className='extra-task';extra.textContent='Clean desk (tomorrow)';extra.addEventListener('click',()=>{stage.querySelector('.detail').innerHTML='<p>Clean desk</p><p>Sunday · 5:00 PM</p><p>3 reminders, every 30 min</p><p>Not scheduled today</p>';stage.querySelectorAll('.tasklist button').forEach(b=>b.setAttribute('aria-pressed',String(b===extra)));});stage.querySelector('.tasklist').appendChild(extra);}
+ else if(extra)extra.hidden=!all;
+ message.textContent=all?'Showing every task in the same list.':'Showing today’s tasks.';
+ }else if(action==='pause'){
+ paused=!paused;if(selected)selected.textContent=(paused?'Paused: ':'')+name;button.textContent=paused?'Resume task':'Pause task';message.textContent=paused?'Task paused. Reminders stopped.':'Task resumed.';
+ }else if(action==='delete'){
+ const old=stage.querySelector('.delete-confirm');if(old)old.remove();
+ const box=document.createElement('div');box.className='delete-confirm';box.setAttribute('role','alert');
+ const text=document.createElement('p');text.textContent='Delete '+name+'?';box.appendChild(text);
+ const cancel=document.createElement('button');cancel.textContent='Cancel';cancel.onclick=()=>box.remove();
+ const remove=document.createElement('button');remove.textContent='Delete';remove.onclick=()=>{if(selected)selected.remove();box.remove();message.textContent='Task deleted in this preview.';};box.append(cancel,document.createTextNode(' '),remove);main.querySelector('.content').appendChild(box);
+ }else if(action==='new'||action==='duplicate'||action==='edit'){
+ const input=stage.querySelector('form input');input.value=action==='new'?'':action==='duplicate'?name+' (copy)':name;stage.querySelector('.editor .title span').textContent=action==='new'?'▧ Bugger - New task':action==='duplicate'?'▧ Bugger - Duplicate task':'▧ Bugger - Edit task';input.focus();message.textContent='';
+ }else if(action==='exit'){message.textContent='Exit Bugger would stop reminders and close the application.';}
+ });
+ const tray=stage.querySelector('.tray-options');const icon=stage.querySelector('.tray-icon');
+ icon.addEventListener('click',()=>tray.hidden=!tray.hidden);
+ icon.addEventListener('contextmenu',e=>{e.preventDefault();tray.hidden=false;});
+ tray.addEventListener('click',e=>{const b=e.target.closest('[data-tray]');if(!b)return;tray.hidden=true;if(b.dataset.tray==='new')dropdown.querySelector('[data-menu=new]').click();else message.textContent=b.dataset.tray==='exit'?'Exit Bugger would stop reminders and close the application.':'Bugger opened from the tray.';});
+});
+})();
+</script>
