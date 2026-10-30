@@ -18,7 +18,7 @@ Set a reminder, choose how often it repeats, then mark it done or snooze it. Bug
 ## Download
 
 **[Download Bugger for Windows x64](https://github.com/Mofman1/Bugger/releases/latest)**
-
+Other OS? Good luck I'm sure if you care enough you can recompile it its all AI generated anyways.
 Choose `Bugger.exe`, save it in a writable folder, and run it. The ZIP also includes instructions and the license. The .NET runtime is included.
 
 Closing the window keeps reminders running in the tray. Use **Exit** to quit. To update, exit Bugger and replace the executable, keeping `tasks.csv` and `settings.txt`.
